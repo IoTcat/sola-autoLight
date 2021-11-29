@@ -20,7 +20,7 @@ var interface = (z0, z1) => {
     z0.on('peopleIn', ()=>{
         if(z1.state){
             o.state = "forward";
-            console.log(new Date().toTimeString() + ' - ' + z1.tag + ' to ' + z0.tag);
+//            console.log(new Date().toTimeString() + ' - ' + z1.tag + ' to ' + z0.tag);
             o.func.backward.forEach((item)=>{
                 item();
             });
@@ -30,7 +30,7 @@ var interface = (z0, z1) => {
     z1.on('peopleIn', ()=>{
         if(z0.state){
             o.state = "backward";
-            console.log(new Date().toTimeString() + ' - ' + z0.tag + ' to ' + z1.tag); 
+//            console.log(new Date().toTimeString() + ' - ' + z0.tag + ' to ' + z1.tag); 
             o.func.forward.forEach((item)=>{
                 item();
             });

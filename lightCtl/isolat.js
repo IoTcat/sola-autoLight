@@ -5,30 +5,32 @@ var isolat = (room, light, pir, lightCtl) => {
 
     let pirStates = [false, false];
     let endT = 0;
+    let TO = {};
 
     let getT = ()=>new Date().valueOf();
 
-    let LightSetter = function(ind, val){
-        pirStates[ind] = val;
-console.log(pirStates);
-        if(pirStates.every((t)=>t)) {
-            light.on();
-            endT = getT(); 
-            return;
-        }
 
-        if(endDur + endT < getT()){
-            light.off();
-            return;
-        }
+    let LightEnder = function(){
+        console.log(new Date() + ' - Hall light off in trigger.');
+        light.off();
     }
 
 
-    setInterval(()=>{
-        if(endDur + endT < getT()){
-            light.off();
+
+
+    let LightSetter = function(ind, val){
+        pirStates[ind] = val;
+console.log(new Date() + ' - Hall 0,1 change: ' + pirStates);
+        if(pirStates.every((t)=>t)) {
+console.log(new Date() + ' - Hall light on in trigger.');
+            clearTimeout(TO);
+            light.on();
+            endT = getT();
+            TO = setTimeout(LightEnder, endDur);
+            return;
         }
-    }, 1000);
+
+    }
 
     pir.forEach((item, ind)=>{
         item.on('peopleIn', ()=>{
