@@ -105,24 +105,24 @@ var room = {
 
 /* lightCtl reg */
 var lightCtl = {
-    hall: lightCtlObj(room.hall, light.hall),
-    din: lightCtlObj(room.din, light.din),
-    liv: lightCtlObj(room.liv, light.liv),
-    kit: lightCtlObj(room.kit, light.kit)
+    //hall: lightCtlObj(room.hall, light.hall),
+    //din: lightCtlObj(room.din, light.din),
+    //liv: lightCtlObj(room.liv, light.liv),
+    //kit: lightCtlObj(room.kit, light.kit)
 }
 
 
 /* peo mqtt */
 var peo_mqtt = {
-    hall: peo(client, room.hall),
-    din: peo(client, room.din),
-    liv: peo(client, room.liv),
-    kit: peo(client, room.kit)
+    //hall: peo(client, room.hall),
+    //din: peo(client, room.din),
+    //liv: peo(client, room.liv),
+    //kit: peo(client, room.kit)
 }
 
 /* 走廊入口 */
 var isolat = {
-    hall: isolatObj(room.hall, light.hall, [p.hall[0], p.hall[1]], lightCtl.hall),
+    hall: isolatObj(room.hall, light.hall, [p.hall[0], p.hall[1]], lightCtl.hall)
     //door: isolatObj(room.din, light.din, [p.din[0], p.livb[0]], lightCtl.din),
 
 }

@@ -7,6 +7,8 @@ var kit = (zone, interface) => {
         num: 0,
         numAct: 0,
         MaxNum: 3,
+        state: false,
+        LastSwiTime: 0,
         LastActTime: new Date().valueOf(),
         MaxSensitTime: 1000 * 60 * 2,
         func: {
@@ -70,10 +72,11 @@ var kit = (zone, interface) => {
 
     /* 超时衰减 */
     setInterval(()=>{
-        if((o.numAct && o.act.rate > .2) || o.act.rate > .3){
-           if(!o.num) pIn();
-        }else{
-            if(o.num) pOut();
+        if(o.act.rate > .6){
+           //if(!o.num) pIn();
+        }
+        if(o.act.rate < .02){
+            //if((o.num || o.state) && o.LastSwiTime < new Date().valueOf() - 1000*60*15) pOut();
         }
         /*if(o.num 
         && o.LastActTime + o.MaxSensitTime * o.act.rate < new Date().valueOf()

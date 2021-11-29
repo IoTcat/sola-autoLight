@@ -5,6 +5,8 @@ var din = (zone, interface, p) => {
         id: 'din',
         num: 0,
         numAct: 0,
+        state: false,
+        LastSwiTime: 0,
         MaxNum: 5,
         LastActTime: new Date().valueOf(),
         MaxSensitTime: 1000 * 60 * 2,
@@ -91,10 +93,11 @@ var din = (zone, interface, p) => {
         if( new Date().getHours() >= 18 && new Date().getHours() <= 20 ) o.isNight = true;
         else o.isNight = false;
 
-        if((o.numAct && o.act.rate > .2) || o.act.rate > .4){
+        if( o.act.rate > .4){
            if(!o.num) pIn();
-        }else{
-            if(o.num) pOut();
+        }
+        if(o.act.rate < .02){
+//          if((o.num || o.state) && o.LastSwiTime < new Date().valueOf() - 1000*60*20) pOut();
         }
  
         o.extTime = ((o.num == 1) && o.isNight)*1000*60*1; 

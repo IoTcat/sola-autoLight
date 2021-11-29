@@ -5,6 +5,13 @@ var core = (room, light) => {
         LastOffTime: 0,
     };
 
+    setInterval(()=>{
+        if(room.state != light.state){
+            room.state = light.state;
+        }
+        room.LastSwiTime = light.LastSwiTime;
+    }, 50);
+
     room.on('peopleIn', ()=>{
        if(room.num == 1){
             light.on();

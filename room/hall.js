@@ -5,7 +5,9 @@ var hall = (zone, interface) => {
         num: 0,
         MaxNum: 2,
         LastActTime: new Date().valueOf(),
-        MaxSensitTime: 1000 * 60 * 1,
+        state: false,
+        LastSwiTime: 0,
+        MaxSensitTime: 1000 * 60 * 3,
         func: {
             peopleIn: [],
             peopleOut: [],
@@ -61,11 +63,11 @@ var hall = (zone, interface) => {
     })
 
     interface.h.on('backward', ()=>{
-        pOut();
+        //pOut();
     })
 
     interface.hd.on('forward', ()=>{
-        pOut();
+        //pOut();
     });
 
     /* 超时衰减 */

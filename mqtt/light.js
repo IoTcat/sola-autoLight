@@ -4,6 +4,7 @@ var light = (client, clientId) => {
         state: false,
         LastOnTime: new Date().valueOf(),
         LastOffTime: new Date().valueOf(),
+        LastSwiTime: 0,
         on: ()=>{
             client.publish('hass/autoLight/'+clientId, '1');
         },
@@ -19,7 +20,21 @@ var light = (client, clientId) => {
             if(msg == 1) o.state = true;
             if(msg == 0) o.state = false;
         }
+        if(subject == 'hass/snsr/'+clientId+'/light'){
+            if(msg == 1) o.state = true;
+            if(msg == 0) o.state = false;
+        }
+        if(subject == 'hass/snsr/'+clientId+'/swi'){
+            o.LastSwiTime = new Date().valueOf();
+        }
+        if(subject == 'hass/ctl/'+clientId+'/light'){
+            o.LastSwiTime = new Date().valueOf();
+            if(msg == 1) o.state = true;
+            if(msg == 0) o.state = false;
+        }
     });
+
+
 
     return o;
 }

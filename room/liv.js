@@ -7,6 +7,8 @@ var liv = (zone, interface) => {
         num: 0,
         numAct: 0,
         MaxNum: 5,
+        state: false,
+        LastSwiTime: 0,
         LastActTime: new Date().valueOf(),
         MaxSensitTime: 1000 * 60 * 2,
         extTime: 0,
@@ -25,7 +27,7 @@ var liv = (zone, interface) => {
         },
         act: {
            rate: 0,
-           maxDetectTime: 1000 * 60 * 30,
+           maxDetectTime: 1000 * 60 * 25,
            actTimeArray: []
         }
     };
@@ -76,27 +78,28 @@ var liv = (zone, interface) => {
         if( new Date().getHours() >= 19 && new Date().getHours() <= 21 ) o.isNight = true;
         else o.isNight = false;
         
-
+/*
         let r = 0.3;
 
        if(new Date().getHours() == 19) {
            r = 0.1;
-           o.act.maxDetectTime = 1000 * 60 * 15;
+           o.act.maxDetectTime = 1000 * 60 * 20;
        }else if(new Date().getHours() == 20) {
            r = 0.05;
            o.act.maxDetectTime = 1000 * 60 * 30;
        }else if(new Date().getHours() == 21) {
            r = 0.05;
-           o.act.maxDetectTime = 1000 * 60 * 15;
+           o.act.maxDetectTime = 1000 * 60 * 20;
        }else{
            r = 0.3;
-           o.act.maxDetectTime = 1000 * 60 * 10;
+           o.act.maxDetectTime = 1000 * 60 * 20;
        }
-       
-        if(o.numAct || o.act.rate > r){
-           if(!o.num) pIn();
-        }else{
-            if(o.num) pOut();
+  */     
+        if(o.act.rate > .35){
+           //if(!o.num) pIn();
+        }
+        if(o.act.rate < .001){
+            //if((o.num || o.state) && o.LastSwiTime < new Date().valueOf() - 1000*60*40) pOut();
         }
       
 
